@@ -39,30 +39,15 @@ export default function Todo() {
     setTodoItems(newTodoItems);
   }
 
-  const onChangeComplateTodo = (e, todoItem) => {
-    const newTodoItem = {
-      ...todoItem,
-      completed: e.target.checked
-    }
+  const onChangeTodo = (todoItem) => {
     const newTodoItems = todoItems.map((t) => {
-      return t.id === newTodoItem.id ? newTodoItem : t;
+      return t.id === todoItem.id ? todoItem : t;
     });
     setTodoItems(newTodoItems);
   }
 
   const onClickEditTodo = (todoId) => {
     setEditingId(todoId);
-  }
-
-  const onChangeEditTodoText = (e, todoItem) => {
-    const newTodoItem = {
-      ...todoItem,
-      title: e.target.value
-    }
-    const newTodoItems = todoItems.map((t) => {
-      return t.id === newTodoItem.id ? newTodoItem : t;
-    });
-    setTodoItems(newTodoItems);
   }
 
   const onClickSaveTodo = () => {
@@ -89,12 +74,18 @@ export default function Todo() {
           <li className="todo-item" key={todoItem.id}>
             <input type="checkbox"
               checked={todoItem.completed}
-              onChange={(e) => onChangeComplateTodo(e, todoItem)}
+              onChange={(e) => onChangeTodo({
+                ...todoItem,
+                completed: e.target.checked
+              })}
             />
             {editingId === todoItem.id
               ?
               <>
-                <input type="text" value={todoItem.title} onChange={(e) => onChangeEditTodoText(e, todoItem)} />
+                <input type="text" value={todoItem.title} onChange={(e) => onChangeTodo({
+                  ...todoItem,
+                  title: e.target.value
+                })} />
                 <button onClick={() => onClickSaveTodo(todoItem.id)}>保存</button>
               </>
               :
@@ -104,7 +95,6 @@ export default function Todo() {
                 <button onClick={() => onClickDeleteTodo(todoItem.id)}>削除</button>
               </>
             }
-
           </li>
         ))}
       </ul>
