@@ -1,3 +1,9 @@
+/**
+ * Todo の件数を表示するコンポーネント
+ * @param {{ todoItems: TodoItem[] }} props
+ * @param {TodoItem[]} props.todoItems - 表示する Todo の配列
+ * @returns {JSX.Element} Todo 件数表示の UI
+ */
 export const TodoCount = ({ todoItems }) => {
   const allCount = todoItems.length;
   const completedCount = todoItems.filter(t => t.completed).length;

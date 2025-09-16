@@ -3,17 +3,37 @@ import { Button } from './atoms/Button';
 import { Input } from './atoms/Input';
 import { DeleteDialog } from './DeleteDialog';
 
+/**
+ * Todo リストを表示するコンポーネント
+ * @param {{ 
+ *   todoItems: TodoItem[], 
+ *   onChangeTodo: (todoItem: TodoItem) => void, 
+ *   onDeleteTodo: (todoItem: TodoItem) => void 
+ * }} props
+ * @param {TodoItem[]} props.todoItems - 表示する Todo の配列
+ * @param {(todoItem: TodoItem) => void} props.onChangeTodo - Todo 更新用コールバック
+ * @param {(todoItem: TodoItem) => void} props.onDeleteTodo - Todo 削除用コールバック
+ * @returns {JSX.Element} Todo 一覧と編集・削除 UI
+ */
 export const TodoList = ({ todoItems, onChangeTodo, onDeleteTodo }) => {
   const [editingId, setEditingId] = useState(null);
   const [editText, setEditText] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [deleteTodoItem, setDeleteTodoItem] = useState({});
 
+  /**
+   * 編集開始
+   * @param {TodoItem} todoItem 
+   */
   const handleStartEdit = (todoItem) => {
     setEditingId(todoItem.id);
     setEditText(todoItem.title);
   }
 
+  /**
+   * 編集内容を保存
+   * @param {TodoItem} todoItem 
+   */
   const handleSave = (todoItem) => {
     setEditingId(null);
     onChangeTodo({
@@ -22,6 +42,10 @@ export const TodoList = ({ todoItems, onChangeTodo, onDeleteTodo }) => {
     })
   }
 
+  /**
+   * 削除ダイアログを開く
+   * @param {TodoItem} todoItem 
+   */
   const handleDelete = (todoItem) => {
     setIsOpen(true);
     setDeleteTodoItem(todoItem);

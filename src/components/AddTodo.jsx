@@ -2,6 +2,11 @@ import { useState } from 'react'
 import { Button } from './atoms/Button';
 import { Input } from './atoms/Input';
 
+/**
+ * 新しい Todo を入力して追加するコンポーネント
+ * @param {AddTodoProps} props
+ * @returns {JSX.Element} Todo 入力フォーム
+ */
 export const AddTodo = ({ onAddTodo }) => {
   const [todoText, setTodoText] = useState("");
 

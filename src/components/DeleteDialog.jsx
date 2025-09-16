@@ -1,5 +1,19 @@
 import { Button, Dialog, Portal } from "@chakra-ui/react"
 
+/**
+ * 削除確認ダイアログコンポーネント
+ * @param {{ 
+ *   isOpen: boolean, 
+ *   onOpenChange: (open: boolean) => void, 
+ *   deleteTodoItem: TodoItem, 
+ *   onDeleteTodo: (id: number) => void 
+ * }} props
+ * @param {boolean} props.isOpen - ダイアログの開閉状態
+ * @param {(open: boolean) => void} props.onOpenChange - ダイアログ開閉状態を変更するコールバック
+ * @param {TodoItem} props.deleteTodoItem - 削除対象の Todo
+ * @param {(id: number) => void} props.onDeleteTodo - Todo 削除処理を実行するコールバック
+ * @returns {JSX.Element} 削除確認ダイアログ
+ */
 export const DeleteDialog = ({ isOpen, onOpenChange, deleteTodoItem, onDeleteTodo }) => {
   return (
     <Dialog.Root size={"xs"} open={isOpen}>
