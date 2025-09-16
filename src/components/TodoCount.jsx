@@ -4,10 +4,33 @@ export const TodoCount = ({ todoItems }) => {
   const incompleteCount = allCount - completedCount;
 
   return (
-    <div className="count-container">
-      <p>全てのタスク：{allCount}</p>
-      <p>完了済み：{completedCount}</p>
-      <p>未完了：{incompleteCount}</p>
-    </div>
+    <>
+      <div className="count-container">
+        <p className="count">全て<br />{allCount}</p>
+        <p className="count">完了済み<br />{completedCount}</p>
+        <p className="count">未完了<br />{incompleteCount}</p>
+      </div>
+
+      <style jsx="true">{`
+      .count-container {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+      }
+      
+      .count {
+        display: inline-block;
+        width: 100px;
+        margin: 0 6px;
+        font-size: 15px;
+        padding: 4px 8px;
+        border-radius: 10px;
+        border: 3px solid #A9D3D4;
+        box-shadow: 2px 2px 6px gray;
+      }
+    `}</style>
+    </>
   )
 };
+
+

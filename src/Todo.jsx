@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './Todo.css'
 import { AddTodo } from './components/AddTodo';
 import { TodoCount } from './components/TodoCount';
 import { TodoList } from './components/TodoList';
@@ -39,8 +38,7 @@ export default function Todo() {
 
   return (
     <>
-      <h1>TODO List</h1>
-
+      <h1>Todo List</h1>
       <TodoCount todoItems={todoItems} />
       <AddTodo onAddTodo={handleAddTodo} />
       <TodoList
