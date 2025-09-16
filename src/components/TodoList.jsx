@@ -4,23 +4,19 @@ import { Input } from './atoms/Input';
 
 export const TodoList = ({ todoItems, onChangeTodo, onDeleteTodo }) => {
   const [editingId, setEditingId] = useState(null);
-  const [prevText, setPrevText] = useState("");
+  const [editText, setEditText] = useState("");
 
   const handleStartEdit = (todoItem) => {
     setEditingId(todoItem.id);
-    setPrevText(todoItem.title);
+    setEditText(todoItem.title);
   }
 
-  const handleEndEdit = () => {
-    setEditingId(null);
-  }
-
-  const handleCancel = (todoItem) => {
+  const handleSave = (todoItem) => {
     setEditingId(null);
     onChangeTodo({
       ...todoItem,
-      title: prevText
-    });
+      title: editText
+    })
   }
 
   return (
@@ -35,19 +31,19 @@ export const TodoList = ({ todoItems, onChangeTodo, onDeleteTodo }) => {
                   <>
                     <Input
                       className="edit-box"
-                      value={todoItem.title}
-                      onChange={(e) => onChangeTodo({
-                        ...todoItem,
-                        title: e.target.value
-                      })}
+                      value={editText}
+                      onChange={(e) => setEditText(e.target.value)}
                     />
                     <div className="todo-right">
                       <Button
                         className="primary-button"
-                        onClick={handleEndEdit}
-                        disabled={todoItem.title === ""}
+                        onClick={() => handleSave(todoItem)}
+                        disabled={editText === ""}
                       >保存</Button>
-                      <Button className="secondary-button" onClick={() => handleCancel(todoItem)}>戻る</Button>
+                      <Button
+                        className="secondary-button"
+                        onClick={() => setEditingId(null)}
+                      >戻る</Button>
                     </div>
                   </>
                   :
@@ -65,8 +61,16 @@ export const TodoList = ({ todoItems, onChangeTodo, onDeleteTodo }) => {
                       {todoItem.title}
                     </p>
                     <div className="todo-right">
-                      <Button className="primary-button" onClick={() => handleStartEdit(todoItem)}>編集</Button>
-                      <Button className="secondary-button" onClick={() => onDeleteTodo(todoItem.id)}>削除</Button>
+                      <Button
+                        className="primary-button"
+                        onClick={() => handleStartEdit(todoItem)}
+                        disabled={editingId !== null}
+                      >編集</Button>
+                      <Button
+                        className="secondary-button"
+                        onClick={() => onDeleteTodo(todoItem.id)}
+                        disabled={editingId !== null}
+                      >削除</Button>
                     </div>
                   </>
                 }
