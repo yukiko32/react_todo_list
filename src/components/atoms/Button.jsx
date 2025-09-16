@@ -1,9 +1,10 @@
-export const Button = ({ children, className, onClick }) => {
+export const Button = ({ children, className, onClick, disabled }) => {
   return (
     <>
       <button
         className={className}
         onClick={onClick}
+        disabled={disabled}
       >
         {children}
       </button>
@@ -16,6 +17,12 @@ export const Button = ({ children, className, onClick }) => {
           &:hover {
             opacity: 0.8;
             cursor: pointer;
+          }
+          &:disabled {
+            background-color: #ccc;
+            color: #666;
+            cursor: not-allowed;
+            opacity: 0.8;  
           }
         }
       `}</style>

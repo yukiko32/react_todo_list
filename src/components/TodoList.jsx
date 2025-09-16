@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Button } from './Button';
-import { Input } from './Input';
+import { Button } from './atoms/Button';
+import { Input } from './atoms/Input';
 
 export const TodoList = ({ todoItems, onChangeTodo, onDeleteTodo }) => {
   const [editingId, setEditingId] = useState(null);
@@ -42,7 +42,11 @@ export const TodoList = ({ todoItems, onChangeTodo, onDeleteTodo }) => {
                       })}
                     />
                     <div className="todo-right">
-                      <Button className="primary-button" onClick={handleEndEdit}>保存</Button>
+                      <Button
+                        className="primary-button"
+                        onClick={handleEndEdit}
+                        disabled={todoItem.title === ""}
+                      >保存</Button>
                       <Button className="secondary-button" onClick={() => handleCancel(todoItem)}>戻る</Button>
                     </div>
                   </>

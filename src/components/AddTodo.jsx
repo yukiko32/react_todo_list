@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Button } from './Button';
-import { Input } from './Input';
+import { Button } from './atoms/Button';
+import { Input } from './atoms/Input';
 
 export const AddTodo = ({ onAddTodo }) => {
   const [todoText, setTodoText] = useState("");
@@ -14,7 +14,9 @@ export const AddTodo = ({ onAddTodo }) => {
           value={todoText}
           onChange={e => setTodoText(e.target.value)}
         />
-        <Button className="save-button"
+        <Button
+          className="save-button"
+          disabled={todoText === ""}
           onClick={() => {
             setTodoText("");
             onAddTodo(todoText);

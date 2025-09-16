@@ -10,7 +10,6 @@ export default function Todo() {
   const [todoItems, setTodoItems] = useState([]);
 
   const handleAddTodo = (todoText) => {
-    if (todoText === "") return;
     const newTodoItems = [
       ...todoItems,
       {
