@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Button } from './Button';
+import { Input } from './Input';
 
 export const TodoList = ({ todoItems, onChangeTodo, onDeleteTodo }) => {
   const [editingId, setEditingId] = useState(null);
@@ -31,9 +33,8 @@ export const TodoList = ({ todoItems, onChangeTodo, onDeleteTodo }) => {
                 {editingId === todoItem.id
                   ?
                   <>
-                    <input
+                    <Input
                       className="edit-box"
-                      type="text"
                       value={todoItem.title}
                       onChange={(e) => onChangeTodo({
                         ...todoItem,
@@ -41,8 +42,8 @@ export const TodoList = ({ todoItems, onChangeTodo, onDeleteTodo }) => {
                       })}
                     />
                     <div className="todo-right">
-                      <button className="primary-button" onClick={handleEndEdit}>保存</button>
-                      <button className="secondary-button" onClick={() => handleCancel(todoItem)}>戻る</button>
+                      <Button className="primary-button" onClick={handleEndEdit}>保存</Button>
+                      <Button className="secondary-button" onClick={() => handleCancel(todoItem)}>戻る</Button>
                     </div>
                   </>
                   :
@@ -60,8 +61,8 @@ export const TodoList = ({ todoItems, onChangeTodo, onDeleteTodo }) => {
                       {todoItem.title}
                     </p>
                     <div className="todo-right">
-                      <button className="primary-button" onClick={() => handleStartEdit(todoItem)}>編集</button>
-                      <button className="secondary-button" onClick={() => onDeleteTodo(todoItem.id)}>削除</button>
+                      <Button className="primary-button" onClick={() => handleStartEdit(todoItem)}>編集</Button>
+                      <Button className="secondary-button" onClick={() => onDeleteTodo(todoItem.id)}>削除</Button>
                     </div>
                   </>
                 }
@@ -95,6 +96,7 @@ export const TodoList = ({ todoItems, onChangeTodo, onDeleteTodo }) => {
         }
 
         .todoTitle {
+          margin: 6px 0;
           width: 240px;
           text-align: left;
         }
