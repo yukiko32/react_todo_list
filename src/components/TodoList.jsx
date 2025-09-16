@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import { Button } from './atoms/Button';
 import { Input } from './atoms/Input';
+import { DeleteDialog } from './DeleteDialog';
 
 export const TodoList = ({ todoItems, onChangeTodo, onDeleteTodo }) => {
   const [editingId, setEditingId] = useState(null);
   const [editText, setEditText] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [deleteTodoItem, setDeleteTodoItem] = useState({});
 
   const handleStartEdit = (todoItem) => {
     setEditingId(todoItem.id);
@@ -19,8 +22,19 @@ export const TodoList = ({ todoItems, onChangeTodo, onDeleteTodo }) => {
     })
   }
 
+  const handleDelete = (todoItem) => {
+    setIsOpen(true);
+    setDeleteTodoItem(todoItem);
+  }
+
   return (
     <>
+      <DeleteDialog
+        isOpen={isOpen}
+        onOpenChange={setIsOpen}
+        deleteTodoItem={deleteTodoItem}
+        onDeleteTodo={onDeleteTodo}
+      />
       {todoItems.length > 0 && (
         <ul>
           {todoItems.map((todoItem, i) => (
@@ -68,7 +82,7 @@ export const TodoList = ({ todoItems, onChangeTodo, onDeleteTodo }) => {
                       >編集</Button>
                       <Button
                         className="secondary-button"
-                        onClick={() => onDeleteTodo(todoItem.id)}
+                        onClick={() => handleDelete(todoItem)}
                         disabled={editingId !== null}
                       >削除</Button>
                     </div>
@@ -129,7 +143,8 @@ export const TodoList = ({ todoItems, onChangeTodo, onDeleteTodo }) => {
         }
 
         .secondary-button {
-          background-color: #BBB;
+          background-color: #778899;
+          color: #fff;
         }
 
         hr {
@@ -137,7 +152,6 @@ export const TodoList = ({ todoItems, onChangeTodo, onDeleteTodo }) => {
           border:none;
           border-top:dashed 1px #CCC;
         }
-        
       `}</style>
     </>
   )

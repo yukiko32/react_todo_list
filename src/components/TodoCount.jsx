@@ -25,6 +25,7 @@ export const TodoCount = ({ todoItems }) => {
         font-size: 15px;
         padding: 4px 8px;
         border-radius: 10px;
+        background-color: #fff;
         border: 3px solid #A9D3D4;
         box-shadow: 2px 2px 6px gray;
       }

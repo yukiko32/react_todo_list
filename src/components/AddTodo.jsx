@@ -43,6 +43,7 @@ export const AddTodo = ({ onAddTodo }) => {
         .save-button {
           background-color: #5F9EA0;
           color: #fff;
+          font-size: 16px;
         }
       `}</style>
     </>

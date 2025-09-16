@@ -10,6 +10,7 @@ export const Button = ({ children, className, onClick, disabled }) => {
       </button>
       <style jsx="true">{`
         button {
+          font-size: 14px;
           border-radius: 8px;
           border: none;
           padding: 4px 14px;

@@ -45,6 +45,24 @@ export default function Todo() {
         onChangeTodo={handleChangeTodo}
         onDeleteTodo={handleDeleteTodo}
       />
+      <style jsx="true">{`
+        * {
+          box-sizing: border-box;
+          list-style: none;
+        }
+
+        body {
+          background-color: #F5F5F5;
+          margin: 0 auto;
+          text-align: center;
+        }
+
+        h1 {
+          font-size: 36px;
+          font-weight: bold;
+          padding: 20px;
+        }
+      `}</style>
     </>
   )
 }
