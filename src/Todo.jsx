@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useRef } from 'react';
 import { AddTodo } from './components/AddTodo';
 import { TodoCount } from './components/TodoCount';
 import { TodoList } from './components/TodoList';
@@ -11,9 +12,6 @@ import { TodoList } from './components/TodoList';
 * @property {boolean} completed - 完了済みかどうか
 */
 
-// Todoのid管理
-let nextId = 0;
-
 /**
  * Todo コンポーネント
  * @component
@@ -21,6 +19,7 @@ let nextId = 0;
  */
 export default function Todo() {
   const [todoItems, setTodoItems] = useState([]);
+  let nextId = useRef(0);
 
   /**
    * 新しい Todo を追加する
@@ -30,7 +29,7 @@ export default function Todo() {
     const newTodoItems = [
       ...todoItems,
       {
-        id: nextId++,
+        id: nextId.current++,
         title: todoText,
         completed: false
       }
